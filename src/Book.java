@@ -7,13 +7,19 @@ public class Book {
     private boolean isAvailable;
 
     // TODO: Implement parameterized constructor
+    // Параметризованный конструктор
     public Book(String title, String author, int year) {
-        // implement
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.isAvailable = true;
     }
 
-    // TODO: Implement copy constructor
     public Book(Book other) {
-        // implement
+        this.title = other.title;
+        this.author = other.author;
+        this.year = other.year;
+        this.isAvailable = other.isAvailable;
     }
 
     // TODO: Implement getters
@@ -33,25 +39,38 @@ public class Book {
         return false;
     }
 
-    // TODO: Implement borrow logic
+    // Выдать книгу
     public void borrowBook() {
-        // implement
+        if (isAvailable) {
+            isAvailable = false;
+            System.out.println("Книга успешно выдана.");
+        } else {
+            System.out.println("Книга уже выдана.");
+        }
     }
 
-    // TODO: Implement return logic
+    // Вернуть книгу
     public void returnBook() {
-        // implement
+        isAvailable = true;
+        System.out.println("Книга возвращена.");
     }
 
-    // TODO: Override toString()
     @Override
     public String toString() {
-        return "";
+        return "Title: " + title +
+                ", Author: " + author +
+                ", Year: " + year +
+                ", Available: " + isAvailable;
     }
 
-    // TODO: Override equals()
     @Override
     public boolean equals(Object obj) {
-        return false;
+        if (this == obj) return true;
+        if (!(obj instanceof Book)) return false;
+
+        Book other = (Book) obj;
+        return title.equals(other.title)
+                && author.equals(other.author)
+                && year == other.year;
     }
 }
